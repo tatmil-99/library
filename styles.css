@@ -5,3 +5,7 @@ body {
 .new-book-form {
   display: none;
 }
+
+.display-form {
+  display: block;
+}

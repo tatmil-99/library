@@ -10,7 +10,16 @@ function Book(title, author, pages, read) {
 Book.prototype.displayBook = function () {};
 
 const newBookBtn = document.querySelector(".new-book");
-newBookBtn.addEventListener("click", (e) => console.log(e));
+newBookBtn.addEventListener("click", (e) => {
+  const newBookForm = document.querySelector(".new-book-form");
+  newBookForm.classList.toggle("display-form");
+
+  if (newBookForm.classList.contains("display-form")) {
+    e.target.textContent = "Cancel";
+  } else {
+    e.target.textContent = "New book";
+  }
+});
 
 // listen for click on addBookBtn
 // when clicked display a form

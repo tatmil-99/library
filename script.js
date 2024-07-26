@@ -21,6 +21,18 @@ newBookBtn.addEventListener("click", (e) => {
   }
 });
 
+const submitBtn = document.querySelector(".submit-btn");
+submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = document.getElementById("pages").value;
+  const yesRead = document.getElementById("yes-read").value;
+  const noRead = document.getElementById("no-read").value;
+
+  console.log(e);
+});
 // listen for click on addBookBtn
 // when clicked display a form
 // gather values from input fields

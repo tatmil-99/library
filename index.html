@@ -18,11 +18,13 @@
     <footer></footer>
 
     <div class="new-book-form">
-        <form action="">
-            <label>Title: <input type="text"></label><br>
-            <label>Author: <input type="text"></label><br>
-            <label>Pages: <input type="number"></label><br>
-            <label>Read: Yes<input type="checkbox" value="Yes">No<input type="checkbox" value="No"></label>
+        <form>
+            <label for="title">Title: <input name="title" id="title" type="text"></label><br>
+            <label for="author">Author: <input name="author" id="author" type="text"></label><br>
+            <label for="pages">Pages: <input name="pages" id="pages" type="number"></label><br>
+            <label for="read">Read: Yes<input name="read" id="yes-read" type="checkbox" value="Yes">No<input name="read"
+                    id="no-read" type="checkbox" value="No"></label><br>
+            <button class="submit-btn">Submit</button>
         </form>
     </div>
 

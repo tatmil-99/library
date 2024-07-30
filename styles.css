@@ -9,3 +9,11 @@ body {
 .display-form {
   display: block;
 }
+
+.reset-btn {
+  display: none;
+}
+
+.display-reset-btn {
+  display: block;
+}

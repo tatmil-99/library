@@ -22,9 +22,9 @@
             <label for="title">Title: <input name="title" id="title" type="text"></label><br>
             <label for="author">Author: <input name="author" id="author" type="text"></label><br>
             <label for="pages">Pages: <input name="pages" id="pages" type="number"></label><br>
-            <label for="read">Read: Yes<input name="read" id="yes-read" type="checkbox" value="Yes">No<input name="read"
-                    id="no-read" type="checkbox" value="No"></label><br>
-            <button class="submit-btn">Submit</button>
+            <label for="read">Have read:<input name="read" id="read" type="checkbox"></label><br>
+            <input type="button" class="add-book" value="Add book"></input>
+            <input type="reset" class="reset-btn" value="Reset" onclick="removeResetFormBtn(this)"></input>
         </form>
     </div>
 

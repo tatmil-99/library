@@ -21,20 +21,17 @@ newBookBtn.addEventListener("click", (e) => {
   }
 });
 
-const submitBtn = document.querySelector(".submit-btn");
-submitBtn.addEventListener("click", (e) => {
+const addBookBtn = document.querySelector(".add-book");
+addBookBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const pages = document.getElementById("pages").value;
-  const yesRead = document.getElementById("yes-read").value;
-  const noRead = document.getElementById("no-read").value;
+  const read = document.getElementById("read").checked;
+  const resetFormBtn = document.querySelector(".reset-btn");
 
-  console.log(e);
+  resetFormBtn.style.display = "inline";
 });
-// listen for click on addBookBtn
-// when clicked display a form
-// gather values from input fields
-// listen for submit
-// when book submitted create new book and display it
+
+const removeResetFormBtn = (elem) => (elem.style.display = "none");

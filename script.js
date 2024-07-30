@@ -21,6 +21,15 @@ newBookBtn.addEventListener("click", (e) => {
   }
 });
 
+const handleResetFormBtn = () => {
+  const resetFormBtn = document.querySelector(".reset-btn");
+
+  resetFormBtn.style.display = "inline";
+  resetFormBtn.onclick = function () {
+    this.style.display = "none";
+  };
+};
+
 const addBookBtn = document.querySelector(".add-book");
 addBookBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -29,9 +38,6 @@ addBookBtn.addEventListener("click", (e) => {
   const author = document.getElementById("author").value;
   const pages = document.getElementById("pages").value;
   const read = document.getElementById("read").checked;
-  const resetFormBtn = document.querySelector(".reset-btn");
 
-  resetFormBtn.style.display = "inline";
+  handleResetFormBtn();
 });
-
-const removeResetFormBtn = (elem) => (elem.style.display = "none");

@@ -12,8 +12,12 @@ body {
 
 .reset-btn {
   display: none;
+  background-color: black;
+  color: white;
 }
 
-.display-reset-btn {
-  display: block;
+.button {
+  padding: 6px 0px;
+  border-radius: 2px;
+  min-width: 85px;
 }

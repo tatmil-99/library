@@ -30,14 +30,13 @@ newBookBtn.addEventListener("click", (e) => {
 
   bookForm.classList.toggle("display-form");
 
-  if (bookForm.classList.contains("display-form")) {
-    e.target.textContent = "Cancel";
-  } else {
-    e.target.textContent = "New book";
-  }
+  e.target.textContent = bookForm.classList.contains("display-form")
+    ? "Cancel"
+    : "New book";
 });
 
 const handleBookBtn = () => {
+  const form = document.querySelector(".book-form");
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const pages = document.getElementById("pages").value;
@@ -48,7 +47,7 @@ const handleBookBtn = () => {
 
   library.push(book);
 
-  document.querySelector(".book-form").reset();
+  form.reset();
 };
 
 const addBookBtn = document.querySelector(".add-book");

@@ -10,42 +10,46 @@ function Book(title, author, pages, read) {
 
 Book.total = 0;
 
-Book.prototype.displayBook = function () {};
+Book.prototype.displayBook = function () {
+  const bookCard = `
+    <div class="card-wrapper">
+      <article>
+        <h3><cite>${this.title}</cite></h3>
+        <span class="author">By: ${this.author}</span>
+        <p>Pages: ${this.pages}</p>
+      </article>
+    </div>
+    `;
+
+  document.querySelector(".card-container").innerHTML += bookCard;
+};
 
 const newBookBtn = document.querySelector(".new-book");
 newBookBtn.addEventListener("click", (e) => {
-  const newBookForm = document.querySelector(".new-book-form");
-  newBookForm.classList.toggle("display-form");
+  const bookForm = document.querySelector(".book-form");
 
-  if (newBookForm.classList.contains("display-form")) {
+  bookForm.classList.toggle("display-form");
+
+  if (bookForm.classList.contains("display-form")) {
     e.target.textContent = "Cancel";
   } else {
     e.target.textContent = "New book";
   }
 });
 
-const handleResetFormBtn = () => {
-  const resetFormBtn = document.querySelector(".reset-btn");
-
-  resetFormBtn.style.display = "inline";
-  resetFormBtn.onclick = function () {
-    this.style.display = "none";
-  };
-};
-
-const addBookBtn = document.querySelector(".add-book");
-addBookBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-
+const handleBookBtn = () => {
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const pages = document.getElementById("pages").value;
   const read = document.getElementById("read").checked;
 
   const book = new Book(title, author, pages, read);
-  console.log(book.id);
-  console.log(Book.total);
+  book.displayBook();
+
   library.push(book);
 
-  handleResetFormBtn();
-});
+  document.querySelector(".book-form").reset();
+};
+
+const addBookBtn = document.querySelector(".add-book");
+addBookBtn.addEventListener("click", handleBookBtn);

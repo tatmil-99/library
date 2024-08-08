@@ -27,7 +27,6 @@ Book.prototype.displayBook = function () {
 const newBookBtn = document.querySelector(".new-book");
 newBookBtn.addEventListener("click", (e) => {
   const bookForm = document.querySelector(".book-form");
-
   bookForm.classList.toggle("display-form");
 
   e.target.textContent = bookForm.classList.contains("display-form")
@@ -35,7 +34,8 @@ newBookBtn.addEventListener("click", (e) => {
     : "New book";
 });
 
-const handleBookBtn = () => {
+const addBookBtn = document.querySelector(".add-book");
+addBookBtn.addEventListener("click", () => {
   const form = document.querySelector(".book-form");
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
@@ -48,7 +48,4 @@ const handleBookBtn = () => {
   library.push(book);
 
   form.reset();
-};
-
-const addBookBtn = document.querySelector(".add-book");
-addBookBtn.addEventListener("click", handleBookBtn);
+});

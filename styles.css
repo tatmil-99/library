@@ -1,3 +1,8 @@
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -5,30 +10,44 @@ body {
   box-sizing: border-box;
 }
 
+.book-form-container {
+  z-index: 3;
+  position: absolute;
+  top: calc(100% / 2 - 200px);
+  width: 100%;
+}
+
 .book-form {
   display: none;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  text-align: center;
+  border: solid 1px red;
+  padding: 20px;
+}
+
+.book-form input {
+  margin-bottom: 10px;
 }
 
 .display-form {
   display: block;
 }
 
-.reset-btn {
-  display: none;
-  background-color: black;
-  color: white;
-}
-
 .button {
   padding: 6px 0px;
   border-radius: 2px;
   min-width: 85px;
+  display: block;
+  margin: 0 auto;
 }
 
 .card-container {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  padding-top: 40px;
 }
 
 .card-wrapper {

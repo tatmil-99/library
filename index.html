@@ -12,22 +12,22 @@
     </header>
     <hr>
     <main>
-        <button class="new-book button">New book</button>
+        <button class="add-book button">Add book</button>
         <div class="card-container"></div>
     </main>
 
     <footer></footer>
 
-    <div class="book-form-container">
+    <dialog class="book-form-dialog">
         <form class="book-form">
-            <h2>Add book</h2>
+            <h2>New book</h2>
             <label for="title">Title: <input name="title" id="title" type="text"></label><br>
             <label for="author">Author: <input name="author" id="author" type="text"></label><br>
             <label for="pages">Pages: <input name="pages" id="pages" type="number"></label><br>
             <label for="read">Have read:<input name="read" id="read" type="checkbox"></label><br>
-            <input type="button" class="add-book button" value="Add book"></input>
+            <input type="submit" class="submit-book button" value="Submit" formmethod="dialog"></input>
         </form>
-    </div>
+    </dialog>
 
     <script src="script.js"></script>
 </body>

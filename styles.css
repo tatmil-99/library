@@ -10,20 +10,17 @@ body {
   box-sizing: border-box;
 }
 
-.book-form-container {
-  z-index: 3;
-  position: absolute;
-  top: calc(100% / 2 - 200px);
-  width: 100%;
+.book-form-dialog {
+  padding: 0;
 }
 
 .book-form {
-  display: none;
+  /* display: none; */
   width: 400px;
   height: 400px;
   margin: 0 auto;
   text-align: center;
-  border: solid 1px red;
+  /* border: solid 1px red; */
   padding: 20px;
 }
 

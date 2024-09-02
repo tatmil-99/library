@@ -24,18 +24,14 @@ Book.prototype.displayBook = function () {
   document.querySelector(".card-container").innerHTML += bookCard;
 };
 
-const newBookBtn = document.querySelector(".new-book");
-newBookBtn.addEventListener("click", (e) => {
-  const bookForm = document.querySelector(".book-form");
-  bookForm.classList.toggle("display-form");
-
-  e.target.textContent = bookForm.classList.contains("display-form")
-    ? "Cancel"
-    : "New book";
+const addBookBtn = document.querySelector(".add-book");
+addBookBtn.addEventListener("click", (e) => {
+  const bookFormDialog = document.querySelector(".book-form-dialog");
+  bookFormDialog.showModal();
 });
 
-const addBookBtn = document.querySelector(".add-book");
-addBookBtn.addEventListener("click", () => {
+const submitBookBtn = document.querySelector(".submit-book");
+submitBookBtn.addEventListener("click", (e) => {
   const form = document.querySelector(".book-form");
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;

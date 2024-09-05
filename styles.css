@@ -69,3 +69,7 @@ body {
 .close-btn:hover {
   cursor: default;
 }
+
+.read {
+  background-color: green;
+}

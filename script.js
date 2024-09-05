@@ -1,27 +1,47 @@
 const library = [];
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.read = read;
+  this.read = false;
   this.id = Book.total++;
 }
 
 Book.total = 0;
 
-Book.prototype.displayBook = function () {
+Book.prototype.toggleReadBtn = function (e) {
+  const readBtn = e.target;
+  const classes = readBtn.classList;
+  const read = classes.toggle("read");
+
+  if (read) {
+    this.read = true;
+    readBtn.textContent = "Read";
+  } else {
+    this.read = false;
+    readBtn.textContent = "Not read";
+  }
+};
+
+Book.prototype.display = function () {
   const bookCard = `
-    <div class="card-wrapper">
+    <div class="card-wrapper" data-book-id="${this.id}">
       <article>
         <h3><cite>${this.title}</cite></h3>
         <span class="author">By: ${this.author}</span>
         <p>Pages: ${this.pages}</p>
+        <button class="read-btn-${this.id}">Not read</button>
       </article>
     </div>
     `;
 
-  document.querySelector(".card-container").innerHTML += bookCard;
+  document
+    .querySelector(".card-container")
+    .insertAdjacentHTML("beforeend", bookCard);
+
+  const readBtn = document.querySelector(`.read-btn-${this.id}`);
+  readBtn.addEventListener("click", (e) => this.toggleReadBtn(e));
 };
 
 const handleDialog = (e) => {
@@ -43,12 +63,10 @@ submitBookBtn.addEventListener("click", (e) => {
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const pages = document.getElementById("pages").value;
-  const read = document.getElementById("read").checked;
 
-  const book = new Book(title, author, pages, read);
-  book.displayBook();
-
+  const book = new Book(title, author, pages);
   library.push(book);
+  book.display();
 
   form.reset();
 });

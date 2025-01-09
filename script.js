@@ -27,6 +27,7 @@ Book.prototype.toggleReadBtn = function (e) {
 Book.prototype.display = function () {
   const bookCard = `
     <div class="card-wrapper" data-book-id="${this.id}">
+      <span aria-hidden="true" class="close-btn">&times;</span>
       <article>
         <h3><cite>${this.title}</cite></h3>
         <span class="author">By: ${this.author}</span>

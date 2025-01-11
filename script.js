@@ -10,29 +10,23 @@ function Book(title, author, pages) {
 
 Book.total = 0;
 
-Book.prototype.toggleReadBtn = function (e) {
-  const readBtn = e.target;
-  const classes = readBtn.classList;
-  const read = classes.toggle("read");
-
-  if (read) {
-    this.read = true;
-    readBtn.textContent = "Read";
-  } else {
+Book.prototype.toggleReadBtn = function () {
+  if (this.read) {
     this.read = false;
-    readBtn.textContent = "Not read";
+  } else {
+    this.read = true;
   }
 };
 
 Book.prototype.display = function () {
   const bookCard = `
-    <div class="card-wrapper" data-book-id="${this.id}">
-      <span aria-hidden="true" class="close-btn">&times;</span>
-      <article>
+    <div class="card-wrapper" data-bookId=${this.id}>
+      <span aria-hidden="true" class="close-btn del-btn-${this.id}">&times;</span>
+      <article data-bookId=${this.id}>
         <h3><cite>${this.title}</cite></h3>
         <span class="author">By: ${this.author}</span>
         <p>Pages: ${this.pages}</p>
-        <button class="read-btn-${this.id}">Not read</button>
+        <button class="read-btn">Not read</button>
       </article>
     </div>
     `;
@@ -40,9 +34,6 @@ Book.prototype.display = function () {
   document
     .querySelector(".card-container")
     .insertAdjacentHTML("beforeend", bookCard);
-
-  const readBtn = document.querySelector(`.read-btn-${this.id}`);
-  readBtn.addEventListener("click", (e) => this.toggleReadBtn(e));
 };
 
 const handleDialog = (e) => {
@@ -70,4 +61,16 @@ submitBookBtn.addEventListener("click", (e) => {
   book.display();
 
   form.reset();
+});
+
+const cardContainer = document.querySelector(".card-container");
+cardContainer.addEventListener("click", (e) => {
+  if (e.target.className === "read-btn") {
+    const parent = e.target.parentNode;
+    const bookId = parent.dataset.bookid;
+    const book = library[bookId];
+
+    book.toggleReadBtn();
+    e.target.textContent = book.read ? "Read" : "Not read";
+  } 
 });

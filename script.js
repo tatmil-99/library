@@ -8,6 +8,7 @@ function Book(title, author, pages) {
   this.id = Book.total++;
 }
 
+// this needs to be decremented after updating IDs
 Book.total = 0;
 
 Book.prototype.toggleReadBtn = function () {
@@ -20,8 +21,8 @@ Book.prototype.toggleReadBtn = function () {
 
 Book.prototype.display = function () {
   const bookCard = `
-    <div class="card-wrapper" data-bookId=${this.id}>
-      <span aria-hidden="true" class="close-btn del-btn-${this.id}">&times;</span>
+    <div class="card-wrapper">
+      <span aria-hidden="true" class="close-btn del-btn">&times;</span>
       <article data-bookId=${this.id}>
         <h3><cite>${this.title}</cite></h3>
         <span class="author">By: ${this.author}</span>
@@ -34,6 +35,10 @@ Book.prototype.display = function () {
   document
     .querySelector(".card-container")
     .insertAdjacentHTML("beforeend", bookCard);
+};
+
+Book.prototype.updateId = function(newId) {
+  this.id = newId;
 };
 
 const handleDialog = (e) => {
@@ -65,12 +70,31 @@ submitBookBtn.addEventListener("click", (e) => {
 
 const cardContainer = document.querySelector(".card-container");
 cardContainer.addEventListener("click", (e) => {
-  if (e.target.className === "read-btn") {
-    const parent = e.target.parentNode;
-    const bookId = parent.dataset.bookid;
-    const book = library[bookId];
+  const classes = e.target.classList;
+  let node;
+  let bookId;
+  let book;
+
+  if (classes.contains("read-btn")) {
+    node = e.target.parentNode;
+    bookId = parseInt(node.dataset.bookid);
+    book = library[bookId];
 
     book.toggleReadBtn();
+
     e.target.textContent = book.read ? "Read" : "Not read";
-  } 
+  } else if (classes.contains("del-btn")) {
+    node = e.target.nextElementSibling;
+    bookId = parseInt(node.dataset.bookid);
+    
+    library.splice(bookId, 1);
+
+    for (let i = bookId; i < library.length; i++) {
+      book = library[i];
+      book.updateId(bookId);
+    }
+    
+    console.log("total:", Book.total);
+    console.log(library)
+  }
 });

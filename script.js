@@ -6,9 +6,8 @@ function Book(title, author, pages) {
   this.pages = pages;
   this.read = false;
   this.id = Book.total++;
-}
+};
 
-// this needs to be decremented after updating IDs
 Book.total = 0;
 
 Book.prototype.toggleReadBtn = function () {
@@ -68,6 +67,7 @@ submitBookBtn.addEventListener("click", (e) => {
   form.reset();
 });
 
+// handle read and delete buttons in gui
 const cardContainer = document.querySelector(".card-container");
 cardContainer.addEventListener("click", (e) => {
   const classes = e.target.classList;
@@ -79,7 +79,7 @@ cardContainer.addEventListener("click", (e) => {
     node = e.target.parentNode;
     bookId = parseInt(node.dataset.bookid);
     book = library[bookId];
-
+    
     book.toggleReadBtn();
 
     e.target.textContent = book.read ? "Read" : "Not read";
@@ -89,12 +89,23 @@ cardContainer.addEventListener("click", (e) => {
     
     library.splice(bookId, 1);
 
-    for (let i = bookId; i < library.length; i++) {
-      book = library[i];
-      book.updateId(bookId);
+    // >>> construction zone <<<
+
+    Book.total--;
+    
+    if (bookId === library.length) {
+      // bookId is last element, *don't* reassign book IDs
+      // update UI
+    } else {
+      // update id properties in book objects and data-attr
+      // update UI
+      for (let i = bookId; i < library.length; i++) {
+        book = library[i];
+        book.id = i;
+      }
     }
     
-    console.log("total:", Book.total);
+    console.log(`Total: ${Book.total}`);
     console.log(library)
   }
 });

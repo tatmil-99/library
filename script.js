@@ -94,8 +94,6 @@ cardContainer.addEventListener("click", (e) => {
     Book.total--;
     
     if (bookId === library.length) {
-      // bookId is last element, *don't* reassign book IDs
-      // update UI
       node.parentNode.remove();
     } else {
       // update id properties in book objects and data-attr

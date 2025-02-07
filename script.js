@@ -98,5 +98,6 @@ cardContainer.addEventListener("click", (e) => {
 
     console.log(`Total: ${Book.total}`);
     console.log(library)
+    console.log('test change')
   }
 });

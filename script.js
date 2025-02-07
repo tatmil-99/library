@@ -79,29 +79,21 @@ cardContainer.addEventListener("click", (e) => {
     node = e.target.parentNode;
     bookId = parseInt(node.dataset.bookid);
     book = library[bookId];
-    
     book.toggleReadBtn();
 
     e.target.textContent = book.read ? "Read" : "Not read";
   } else if (classes.contains("del-btn")) {
     node = e.target.nextElementSibling;
+    node.parentNode.remove();
     bookId = parseInt(node.dataset.bookid);
     
     library.splice(bookId, 1);
 
-    // >>> construction zone <<<
-
     Book.total--;
     
-    if (bookId === library.length) {
-      node.parentNode.remove();
-    } else {
-      // update id properties in book objects and data-attr
-      // update UI
-      for (let i = bookId; i < library.length; i++) {
-        book = library[i];
-        book.id = i;
-      }
+    for (let i = bookId; i < library.length; i++) {
+      book = library[i];
+      book.id = i;
     }
 
     console.log(`Total: ${Book.total}`);

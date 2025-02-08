@@ -96,8 +96,10 @@ cardContainer.addEventListener("click", (e) => {
       book.id = i;
     }
 
+    const elements = document.querySelectorAll('article[data-bookId]');
+    elements.forEach((article, i) => article.dataset.bookid = i);
+
     console.log(`Total: ${Book.total}`);
     console.log(library)
-    console.log('test change')
   }
 });
